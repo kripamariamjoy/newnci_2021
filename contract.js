@@ -6,10 +6,10 @@ const Web3 = require("web3")
 // this sets up my .env file
 require('dotenv').config()
 
-// let's load our environment variables
-infuraToken = process.env.INFURA_TOKEN
-contractAddress = process.env.CONTRACT_ADDRESS
-ownerAddress = process.env.OWNER_ADDRESS
+// let's load our environment variabless
+infuraToken = "84ba0eafe11d4934ac7fdc1b0117ef5a"
+contractAddress = "0x92801a3c9e8df4e79021f195a8ed9bb20803eb00"
+ownerAddress = "0x6bfdbc92868befb7d9e4312e22ea872ee256eee1"
 
 // set up a RPC (remote procedure call) to connect to an ethereum node
 const rpcURL = "https://ropsten.infura.io/v3/84ba0eafe11d4934ac7fdc1b0117ef5a";
@@ -20,9 +20,20 @@ const web3 = new Web3(rpcURL);
 console.log("connected to web3");
 
 // get the ABI (interface) for our contract
-const abi = [
+const abi =[
 	{
-		"inputs": [],
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "name_",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "symbol_",
+				"type": "string"
+			}
+		],
 		"stateMutability": "nonpayable",
 		"type": "constructor"
 	},
@@ -75,19 +86,6 @@ const abi = [
 		],
 		"name": "Transfer",
 		"type": "event"
-	},
-	{
-		"inputs": [],
-		"name": "_totalSupply",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
 	},
 	{
 		"inputs": [
@@ -170,6 +168,54 @@ const abi = [
 		"type": "function"
 	},
 	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "spender",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "subtractedValue",
+				"type": "uint256"
+			}
+		],
+		"name": "decreaseAllowance",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "spender",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "addedValue",
+				"type": "uint256"
+			}
+		],
+		"name": "increaseAllowance",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
 		"inputs": [],
 		"name": "name",
 		"outputs": [
@@ -190,19 +236,6 @@ const abi = [
 				"internalType": "string",
 				"name": "",
 				"type": "string"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "tokenOwner",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
 			}
 		],
 		"stateMutability": "view",
