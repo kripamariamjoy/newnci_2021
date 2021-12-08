@@ -6,15 +6,26 @@ const Tx = require('ethereumjs-tx').Transaction
 
 require('dotenv').config()
 
-infuraToken = process.env.INFURA_TOKEN
-contractAddress = process.env.CONTRACT_ADDRESS
-ownerAddress = process.env.OWNER_ADDRESS
-privateKey = Buffer.from(process.env.SUPER_SECRET_PRIVATE_KEY, 'hex')
+infuraToken ="84ba0eafe11d4934ac7fdc1b0117ef5a"
+contractAddress ="0xae0e06babc80b4d5543c990f2bee60f3cdde4e7e"
+ownerAddress ="0x6bfdbc92868befb7d9e4312e22ea872ee256eee1"
+privateKey = Buffer.from("8d92ab799bf1c49505f461d6c4c5a827130c9e36efa581c491879db13f486bc6", 'hex')
 
 // get the ABI (interface) for our contract
 const abi = [
 	{
-		"inputs": [],
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "name_",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "symbol_",
+				"type": "string"
+			}
+		],
 		"stateMutability": "nonpayable",
 		"type": "constructor"
 	},
@@ -67,19 +78,6 @@ const abi = [
 		],
 		"name": "Transfer",
 		"type": "event"
-	},
-	{
-		"inputs": [],
-		"name": "_totalSupply",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
 	},
 	{
 		"inputs": [
@@ -162,6 +160,54 @@ const abi = [
 		"type": "function"
 	},
 	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "spender",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "subtractedValue",
+				"type": "uint256"
+			}
+		],
+		"name": "decreaseAllowance",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "spender",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "addedValue",
+				"type": "uint256"
+			}
+		],
+		"name": "increaseAllowance",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
 		"inputs": [],
 		"name": "name",
 		"outputs": [
@@ -182,19 +228,6 @@ const abi = [
 				"internalType": "string",
 				"name": "",
 				"type": "string"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "tokenOwner",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
 			}
 		],
 		"stateMutability": "view",
@@ -271,8 +304,8 @@ const abi = [
 // instantiate web3 with the infura rpc url
 const web3 = new Web3("https://ropsten.infura.io/v3/84ba0eafe11d4934ac7fdc1b0117ef5a");
 
-const address = contractAddress;
-const owner = ownerAddress;
+const address = "0x56b9d8d5375f133bbe567e5508264ed2f2688316";
+const owner = "0x6bfdbc92868befb7d9e4312e22ea872ee256eee1";
 
 // connect to our contract
 const contract = new web3.eth.Contract(abi, address);
