@@ -19,14 +19,14 @@ let contract = require('./contract.js');
 require('dotenv').config()
 
 // let's load our environment variables
-infuraToken = process.env.INFURA_TOKEN
-contractAddress = process.env.CONTRACT_ADDRESS
-ownerAddress = process.env.OWNER_ADDRESS
-privateKey = Buffer.from(process.env.SUPER_SECRET_PRIVATE_KEY, 'hex')
+infuraToken = "84ba0eafe11d4934ac7fdc1b0117ef5a"
+contractAddress = "0xae0e06babc80b4d5543c990f2bee60f3cdde4e7e"
+ownerAddress = "0x6bfdbc92868befb7d9e4312e22ea872ee256eee1"
+privateKey = Buffer.from("8d92ab799bf1c49505f461d6c4c5a827130c9e36efa581c491879db13f486bc6", 'hex')
 
 const distribute = async() => {
     // read in the file
-    let distributionAddresses = fs.readFileSync('./accounts.txt', 'utf8').split('\n');
+    let distributionAddresses = fs.readFileSync('./accounts.txt', 'utf8').split(' ');
 
     console.log(`distro addresses are: ${ distributionAddresses}`);
 
