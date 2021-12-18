@@ -86,8 +86,11 @@ Create and Deploy Docker image
 
 5. To see the docker images
      $docker image ls
+6. To start already existing image
+$docker start container_name
+ eg:$ docker start nci1
 
-6. To push docker image
+7. To push docker image
    $docker push 20217986k/lab2021:latest
 
-   #### Link to this image: https://hub.docker.com/repository/docker/20217986k/lab2021 
+   #### Link to this image: https://hub.docker.com/repository/docker/20217986k/lab2021
